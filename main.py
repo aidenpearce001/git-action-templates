@@ -79,5 +79,18 @@ class UserInput(BaseModel):
 
 @app.post("/xss", response_class=HTMLResponse)
 async def xss_test(request: Request, input: UserInput):
-    return templates.TemplateResponse("xss_template.html", {"request": request, "user_input": input.user_input})
+    html= f"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>XSS Test</title>
+    </head>
+    <body>
+        <h2>XSS Test Page</h2>
+        <p>User Input:</p>
+        <div>{input.user_input}</div> <!-- Potential XSS Vulnerability -->
+    </body>
+    </html>
+    """
+    return html
 
