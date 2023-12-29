@@ -1,6 +1,6 @@
 # file: test_string_operations.py
 import pytest
-from string_operations import uppercase_string
+from app.string_operations import uppercase_string
 
 def test_uppercase_string():
     assert uppercase_string("hello") == "HELLO"
