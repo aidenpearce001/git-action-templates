@@ -1,12 +1,13 @@
 name: CI
 
-permissions:
-  contents: write
-
 on: 
   pull_request:
     branches: [main]
   workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   formatting-and-linting:
