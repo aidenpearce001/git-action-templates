@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 
@@ -65,3 +65,18 @@ def fibonacci(n):
 #     for i in range(2, n):
 #         fib.append(fib[i-1] + fib[i-2])
 #     return fib[:n]
+    
+from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse
+from pydantic import BaseModel
+
+app = FastAPI()
+templates = Jinja2Templates(directory="templates")
+
+class UserInput(BaseModel):
+    user_input: str
+
+@app.get("/xss", response_class=HTMLResponse)
+async def xss_test(request: Request, input: UserInput):
+    return templates.TemplateResponse("xss_template.html", {"request": request, "user_input": input.user_input})
+
