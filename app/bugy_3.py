@@ -1,9 +1,8 @@
-from flask import Flask
-app = Flask(__name__)
+users = {
+    "admin": "password123",  # Insecure: Password is stored in plaintext
+    "user": "mypassword"
+}
 
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
+def check_login(username, password):
+    return users.get(username) == password
 
-if __name__ == '__main__':
-    app.run(debug=True)  # Insecure: Never run with debug=True in production
