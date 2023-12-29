@@ -75,7 +75,7 @@ def fibonacci(n):
 class UserInput(BaseModel):
     user_input: str
 
-@app.get("/xss", response_class=HTMLResponse)
+@app.post("/xss", response_class=HTMLResponse)
 async def xss_test(request: Request, input: UserInput):
     return templates.TemplateResponse("xss_template.html", {"request": request, "user_input": input.user_input})
 
