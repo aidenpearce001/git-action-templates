@@ -114,6 +114,7 @@ jobs:
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
   coverage:
+    needs: [run-pytest]
     name: Calculate code coverage
     runs-on: ubuntu-latest
 
