@@ -28,12 +28,10 @@ jobs:
         run: isort .
 
       - name: Run black
-        run: black duc
-        env:
-          CI: ""
+        run: black .
 
       - name: Run ruff
-        run: ruff check duc 
+        run: ruff check .
 
   run-pytest:
     needs: formatting-and-linting
