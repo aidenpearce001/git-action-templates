@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>XSS Test</title>
+</head>
+<body>
+    <h2>XSS Test Page</h2>
+    <p>User Input:</p>
+    <div>{{ user_input | safe }}</div> <!-- Potential XSS Vulnerability -->
+</body>
+</html>
