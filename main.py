@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from routers import sql_injection
 
 app = FastAPI(title="Dashboard API", version="0.1.0", description="Dashboard API")
@@ -73,7 +73,9 @@ def fibonacci(n):
 
 
 class UserInput(BaseModel):
-    user_input: str
+    user_input: str = Field(
+        example="<img src='https://thecaninebuddy.com/wp-content/uploads/2021/08/crying-cat-meme.jpg' alt='Meme Image'>"
+    )
 
 @app.post("/xss", response_class=HTMLResponse)
 async def xss_test(request: Request, input: UserInput):
