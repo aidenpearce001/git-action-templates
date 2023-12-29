@@ -13,6 +13,7 @@ def connect_database():
     username = "admin"
     password = "12345"  # Hardcoded password
     # Code to connect to the database
+    print(username, password)
     return "Database connected"
 
 print(connect_database())
