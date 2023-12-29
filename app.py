@@ -1,10 +1,14 @@
 from fastapi import FastAPI,Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
-
+from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse
+from pydantic import BaseModel
 from routers import sql_injection
 
 app = FastAPI(title="Dashboard API", version="0.1.0", description="Dashboard API")
+
+templates = Jinja2Templates(directory="templates")
 
 origins = [
     "http://localhost",
@@ -66,12 +70,7 @@ def fibonacci(n):
 #         fib.append(fib[i-1] + fib[i-2])
 #     return fib[:n]
     
-from fastapi.templating import Jinja2Templates
-from fastapi.responses import HTMLResponse
-from pydantic import BaseModel
 
-app = FastAPI()
-templates = Jinja2Templates(directory="templates")
 
 class UserInput(BaseModel):
     user_input: str
