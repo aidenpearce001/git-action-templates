@@ -2,8 +2,7 @@ name: CD
 
 on:
   pull_request:
-    branches:
-      - develop  # Add any other branches you want to include
+    branches: [develop]
   workflow_dispatch:
 
 jobs:
