@@ -5,6 +5,9 @@ on:
     branches: [deploy]
   workflow_dispatch:
 
+permissions:
+  security-events: write
+
 jobs:
   docker-build:
     runs-on: ubuntu-latest
@@ -37,18 +40,38 @@ jobs:
           REPOSITORY: ${{ matrix.config.repository }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          echo $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG 
-          docker build -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
-          docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
+          IMAGE_NAME=$REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
+          docker build -t $IMAGE_NAME .
+          echo "DOCKER_IMAGE=$IMAGE_NAME" >> $GITHUB_ENV
+  
+  Trivy-scan:
+    runs-on: ubuntu-latest
 
-      # - name: upload image to ECR
-      #   uses: appleboy/docker-ecr-action@master
-      #   with:
-      #     access_key: ${{ secrets.aws_access_key_id }}
-      #     secret_key: ${{ secrets.aws_secret_access_key }}
-      #     registry: ${{ secrets.registry }}
-      #     repo: git-action-template
-      #     tags: latest,${{ github.sha }}
-      #     dockerfile: Dockerfile
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-# Additional job to handle the deployment or other steps can be added
+      - name: Run static analysis
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ env.DOCKER_IMAGE }}
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+      
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+  # Deploy:
+  #   runs-on: ubuntu-latest
+
+      # - name: Build, tag, and push docker image to Amazon ECR Public
+      #   env:
+      #     REGISTRY: ${{ steps.login-ecr-public.outputs.registry }}
+      #     REGISTRY_ALIAS: ${{ matrix.config.repository-alias }}
+      #     REPOSITORY: ${{ matrix.config.repository }}
+      #     IMAGE_TAG: ${{ github.sha }}
+      #   run: |
+      #     docker build -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
+      #     docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
