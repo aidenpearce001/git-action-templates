@@ -1,0 +1,42 @@
+name: CD
+
+on:
+  pull_request:
+    branches:
+      - develop  # Add any other branches you want to include
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # Add steps to build and deploy your application
+    # - name: Build and Deploy
+    #   run: <your build and deploy script here>
+
+  dast:
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: OWASP ZAP Scan
+      uses: zaproxy/action-baseline@v0.4.0
+      with:
+        # The target URL to perform ZAP scanning
+        target: 'https://your-deployed-application.com'
+        # The rules file location
+        rules_file_name: '.zap/rules.tsv'
+        # Other optional parameters
+        cmd_options: '-J report.json'
+
+    - name: Upload ZAP Scan Report
+      uses: actions/upload-artifact@v2
+      with:
+        name: zap-report
+        path: report.json
+
+# Additional job to handle the deployment or other steps can be added
