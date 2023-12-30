@@ -21,7 +21,6 @@ jobs:
           registry: ${{ secrets.registry }}
           repo: git-action-template
           tags: latest,${{ github.sha }}
-          region: us-east-1
           dockerfile: Dockerfile
 
 # Additional job to handle the deployment or other steps can be added
