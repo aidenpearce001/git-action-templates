@@ -3,8 +3,9 @@ name: CD
 on:
   pull_request:
     branches:
-      - develop  # Add any other branches you want to include
-
+      - deploy
+  workflow_dispatch:
+  
 jobs:
   docker build:
     needs: build-and-deploy
