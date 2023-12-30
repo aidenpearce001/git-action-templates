@@ -53,18 +53,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - env:
-        docker_img: ${{needs.docker-build.outputs.output}}
-
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: DOCKER Image
+        shell: bash
+        run: |
+          echo ${{ needs.docker-build.outputs.docker_image }}
+
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
-        
         with:
-          echo "$docker_img"
-          image-ref: $docker_img
+          image-ref: ${{ needs.docker-build.outputs.docker_image }}
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
