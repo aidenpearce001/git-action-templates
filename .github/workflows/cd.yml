@@ -50,6 +50,7 @@ jobs:
           echo "DOCKER_IMAGE=$IMAGE_NAME" >> "$GITHUB_OUTPUT"
   
   Trivy-scan:
+    needs: docker-build
     runs-on: ubuntu-latest
 
     steps:
