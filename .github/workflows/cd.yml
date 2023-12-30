@@ -51,7 +51,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-     - name: Run Trivy vulnerability scanner
+      - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: ${{ env.DOCKER_IMAGE }}
