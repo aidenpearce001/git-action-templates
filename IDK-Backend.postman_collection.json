@@ -1,0 +1,1962 @@
+{
+	"info": {
+		"_postman_id": "b5131006-a054-445c-ac55-dcdfef32238f",
+		"name": "IDK-Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20359272",
+		"_collection_link": "https://www.postman.com/telecoms-geoscientist-98035701/workspace/api-be/collection/20359272-b5131006-a054-445c-ac55-dcdfef32238f?action=share&source=collection_link&creator=20359272"
+	},
+	"item": [
+		{
+			"name": "Authen API",
+			"item": [
+				{
+					"name": "get_current_user",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Content-Length",
+								"value": "0"
+							},
+							{
+								"key": "Cookie",
+								"value": "cids=1; _xsrf=2|1b4c27ed|e08e1e9c59cdda1fcacdfff9235dbbd3|1701105959; username-localhost-8888=\"2|1:0|10:1701225983|23:username-localhost-8888|44:MzA4YWJkMDEzZDcxNDk4MDhjNTg3NjEzMzQ1YTk1ZWM=|a3660a23243daeb33e0eb9f4b8f08f039394469f52a262dffc90a4c3e9ec12cb\""
+							},
+							{
+								"key": "Origin",
+								"value": "http://localhost:8001"
+							},
+							{
+								"key": "Referer",
+								"value": "http://localhost:8001/docs"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "dnt",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8003/api/v1/dashboard/get_current_user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8003",
+							"path": [
+								"api",
+								"v1",
+								"dashboard",
+								"get_current_user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "cids=1; _xsrf=2|1b4c27ed|e08e1e9c59cdda1fcacdfff9235dbbd3|1701105959; username-localhost-8888=\"2|1:0|10:1701225983|23:username-localhost-8888|44:MzA4YWJkMDEzZDcxNDk4MDhjNTg3NjEzMzQ1YTk1ZWM=|a3660a23243daeb33e0eb9f4b8f08f039394469f52a262dffc90a4c3e9ec12cb\""
+							},
+							{
+								"key": "Origin",
+								"value": "http://localhost:8001"
+							},
+							{
+								"key": "Referer",
+								"value": "http://localhost:8001/docs"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "dnt",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"omclient\",\n  \"password\": \"12345678\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8003/api/v1/dashboard/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8003",
+							"path": [
+								"api",
+								"v1",
+								"dashboard",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "cids=1; _xsrf=2|1b4c27ed|e08e1e9c59cdda1fcacdfff9235dbbd3|1701105959; username-localhost-8888=\"2|1:0|10:1701225983|23:username-localhost-8888|44:MzA4YWJkMDEzZDcxNDk4MDhjNTg3NjEzMzQ1YTk1ZWM=|a3660a23243daeb33e0eb9f4b8f08f039394469f52a262dffc90a4c3e9ec12cb\""
+							},
+							{
+								"key": "Origin",
+								"value": "http://localhost:8001"
+							},
+							{
+								"key": "Referer",
+								"value": "http://localhost:8001/docs"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "dnt",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n  \"username\": \"omclient\",\n\n  \"email\": \"omnguyen^@example.com\",\n\n  \"password\": \"12345678\",\n\n  \"first_name\": \"Om\",\n\n  \"last_name\": \"Om\",\n\n  \"isadmin\": false\n\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8003/api/v1/dashboard/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8003",
+							"path": [
+								"api",
+								"v1",
+								"dashboard",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Feedback",
+			"item": [
+				{
+					"name": "Read All",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Cookie",
+								"value": "cids=1; _xsrf=2|1b4c27ed|e08e1e9c59cdda1fcacdfff9235dbbd3|1701105959; username-localhost-8888=\"2|1:0|10:1701225983|23:username-localhost-8888|44:MzA4YWJkMDEzZDcxNDk4MDhjNTg3NjEzMzQ1YTk1ZWM=|a3660a23243daeb33e0eb9f4b8f08f039394469f52a262dffc90a4c3e9ec12cb\""
+							},
+							{
+								"key": "Referer",
+								"value": "http://localhost:8001/docs"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "dnt",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8001/api/v1/feedback/read/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"api",
+								"v1",
+								"feedback",
+								"read",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "cids=1; _xsrf=2|1b4c27ed|e08e1e9c59cdda1fcacdfff9235dbbd3|1701105959; username-localhost-8888=\"2|1:0|10:1701225983|23:username-localhost-8888|44:MzA4YWJkMDEzZDcxNDk4MDhjNTg3NjEzMzQ1YTk1ZWM=|a3660a23243daeb33e0eb9f4b8f08f039394469f52a262dffc90a4c3e9ec12cb\""
+							},
+							{
+								"key": "Origin",
+								"value": "http://localhost:8001"
+							},
+							{
+								"key": "Referer",
+								"value": "http://localhost:8001/docs"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "dnt",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"rating\": 5,\n  \"content\": \"Test API Reg-13-12-2023\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8001/api/v1/feedback/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"api",
+								"v1",
+								"feedback",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read by User (df: omtest)",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Cookie",
+								"value": "cids=1; _xsrf=2|1b4c27ed|e08e1e9c59cdda1fcacdfff9235dbbd3|1701105959; username-localhost-8888=\"2|1:0|10:1701225983|23:username-localhost-8888|44:MzA4YWJkMDEzZDcxNDk4MDhjNTg3NjEzMzQ1YTk1ZWM=|a3660a23243daeb33e0eb9f4b8f08f039394469f52a262dffc90a4c3e9ec12cb\""
+							},
+							{
+								"key": "Referer",
+								"value": "http://localhost:8001/docs"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "dnt",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8001/api/v1/feedback/read/user/omtest",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"api",
+								"v1",
+								"feedback",
+								"read",
+								"user",
+								"omtest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read by ID (df: 55)",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Cookie",
+								"value": "cids=1; _xsrf=2|1b4c27ed|e08e1e9c59cdda1fcacdfff9235dbbd3|1701105959; username-localhost-8888=\"2|1:0|10:1701225983|23:username-localhost-8888|44:MzA4YWJkMDEzZDcxNDk4MDhjNTg3NjEzMzQ1YTk1ZWM=|a3660a23243daeb33e0eb9f4b8f08f039394469f52a262dffc90a4c3e9ec12cb\""
+							},
+							{
+								"key": "Referer",
+								"value": "http://localhost:8001/docs"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "dnt",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8001/api/v1/feedback/read/id/55",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"api",
+								"v1",
+								"feedback",
+								"read",
+								"id",
+								"55"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete by ID",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Cookie",
+								"value": "cids=1; _xsrf=2|1b4c27ed|e08e1e9c59cdda1fcacdfff9235dbbd3|1701105959; username-localhost-8888=\"2|1:0|10:1701225983|23:username-localhost-8888|44:MzA4YWJkMDEzZDcxNDk4MDhjNTg3NjEzMzQ1YTk1ZWM=|a3660a23243daeb33e0eb9f4b8f08f039394469f52a262dffc90a4c3e9ec12cb\""
+							},
+							{
+								"key": "Origin",
+								"value": "http://localhost:8001"
+							},
+							{
+								"key": "Referer",
+								"value": "http://localhost:8001/docs"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "dnt",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8001/api/v1/feedback/delete/id/55",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"api",
+								"v1",
+								"feedback",
+								"delete",
+								"id",
+								"55"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete by User",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Cookie",
+								"value": "cids=1; _xsrf=2|1b4c27ed|e08e1e9c59cdda1fcacdfff9235dbbd3|1701105959; username-localhost-8888=\"2|1:0|10:1701225983|23:username-localhost-8888|44:MzA4YWJkMDEzZDcxNDk4MDhjNTg3NjEzMzQ1YTk1ZWM=|a3660a23243daeb33e0eb9f4b8f08f039394469f52a262dffc90a4c3e9ec12cb\""
+							},
+							{
+								"key": "Origin",
+								"value": "http://localhost:8001"
+							},
+							{
+								"key": "Referer",
+								"value": "http://localhost:8001/docs"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "dnt",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8001/api/v1/feedback/delete/user/omtest",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"api",
+								"v1",
+								"feedback",
+								"delete",
+								"user",
+								"omtest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "cids=1; _xsrf=2|1b4c27ed|e08e1e9c59cdda1fcacdfff9235dbbd3|1701105959; username-localhost-8888=\"2|1:0|10:1701225983|23:username-localhost-8888|44:MzA4YWJkMDEzZDcxNDk4MDhjNTg3NjEzMzQ1YTk1ZWM=|a3660a23243daeb33e0eb9f4b8f08f039394469f52a262dffc90a4c3e9ec12cb\""
+							},
+							{
+								"key": "Origin",
+								"value": "http://localhost:8001"
+							},
+							{
+								"key": "Referer",
+								"value": "http://localhost:8001/docs"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "dnt",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 64,\n  \"rating\": 4,\n  \"content\": \"Update API 13-12-2023\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8001/api/v1/feedback/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"api",
+								"v1",
+								"feedback",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User API",
+			"item": [
+				{
+					"name": "Get all users",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Content-Length",
+								"value": "0"
+							},
+							{
+								"key": "Cookie",
+								"value": "cids=1; _xsrf=2|1b4c27ed|e08e1e9c59cdda1fcacdfff9235dbbd3|1701105959; username-localhost-8888=\"2|1:0|10:1701225983|23:username-localhost-8888|44:MzA4YWJkMDEzZDcxNDk4MDhjNTg3NjEzMzQ1YTk1ZWM=|a3660a23243daeb33e0eb9f4b8f08f039394469f52a262dffc90a4c3e9ec12cb\""
+							},
+							{
+								"key": "Origin",
+								"value": "http://localhost:8001"
+							},
+							{
+								"key": "Referer",
+								"value": "http://localhost:8001/docs"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "dnt",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8003/api/v1/dashboard/get_all_users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8003",
+							"path": [
+								"api",
+								"v1",
+								"dashboard",
+								"get_all_users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User (not include password for Admin Page)",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "cids=1; _xsrf=2|1b4c27ed|e08e1e9c59cdda1fcacdfff9235dbbd3|1701105959; username-localhost-8888=\"2|1:0|10:1701225983|23:username-localhost-8888|44:MzA4YWJkMDEzZDcxNDk4MDhjNTg3NjEzMzQ1YTk1ZWM=|a3660a23243daeb33e0eb9f4b8f08f039394469f52a262dffc90a4c3e9ec12cb\""
+							},
+							{
+								"key": "Origin",
+								"value": "http://localhost:8001"
+							},
+							{
+								"key": "Referer",
+								"value": "http://localhost:8001/docs"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "dnt",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"omclient\",\n  \"email\": \"user_test@update.api\",\n  \"isadmin\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8003/api/v1/dashboard/update_user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8003",
+							"path": [
+								"api",
+								"v1",
+								"dashboard",
+								"update_user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "cids=1; _xsrf=2|1b4c27ed|e08e1e9c59cdda1fcacdfff9235dbbd3|1701105959; username-localhost-8888=\"2|1:0|10:1701225983|23:username-localhost-8888|44:MzA4YWJkMDEzZDcxNDk4MDhjNTg3NjEzMzQ1YTk1ZWM=|a3660a23243daeb33e0eb9f4b8f08f039394469f52a262dffc90a4c3e9ec12cb\""
+							},
+							{
+								"key": "Origin",
+								"value": "http://localhost:8001"
+							},
+							{
+								"key": "Referer",
+								"value": "http://localhost:8001/docs"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "dnt",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"password1\": \"1234567\",\n  \"password2\": \"1234567\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8003/api/v1/dashboard/change_password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8003",
+							"path": [
+								"api",
+								"v1",
+								"dashboard",
+								"change_password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Cookie",
+								"value": "cids=1; _xsrf=2|1b4c27ed|e08e1e9c59cdda1fcacdfff9235dbbd3|1701105959; username-localhost-8888=\"2|1:0|10:1701225983|23:username-localhost-8888|44:MzA4YWJkMDEzZDcxNDk4MDhjNTg3NjEzMzQ1YTk1ZWM=|a3660a23243daeb33e0eb9f4b8f08f039394469f52a262dffc90a4c3e9ec12cb\""
+							},
+							{
+								"key": "Origin",
+								"value": "http://localhost:8001"
+							},
+							{
+								"key": "Referer",
+								"value": "http://localhost:8001/docs"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "dnt",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8003/api/v1/dashboard/delete_user?username=test",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8003",
+							"path": [
+								"api",
+								"v1",
+								"dashboard",
+								"delete_user"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "test"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Conversation API",
+			"item": [
+				{
+					"name": "Create Conversation",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Content-Length",
+								"value": "0"
+							},
+							{
+								"key": "Cookie",
+								"value": "cids=1; _xsrf=2|1b4c27ed|e08e1e9c59cdda1fcacdfff9235dbbd3|1701105959; username-localhost-8888=\"2|1:0|10:1701225983|23:username-localhost-8888|44:MzA4YWJkMDEzZDcxNDk4MDhjNTg3NjEzMzQ1YTk1ZWM=|a3660a23243daeb33e0eb9f4b8f08f039394469f52a262dffc90a4c3e9ec12cb\""
+							},
+							{
+								"key": "Origin",
+								"value": "http://localhost:8001"
+							},
+							{
+								"key": "Referer",
+								"value": "http://localhost:8001/docs"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "dnt",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8001/api/v1/conversations/create_conversation?type=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"api",
+								"v1",
+								"conversations",
+								"create_conversation"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add User To Conversation",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "cids=1; _xsrf=2|1b4c27ed|e08e1e9c59cdda1fcacdfff9235dbbd3|1701105959; username-localhost-8888=\"2|1:0|10:1701225983|23:username-localhost-8888|44:MzA4YWJkMDEzZDcxNDk4MDhjNTg3NjEzMzQ1YTk1ZWM=|a3660a23243daeb33e0eb9f4b8f08f039394469f52a262dffc90a4c3e9ec12cb\""
+							},
+							{
+								"key": "Origin",
+								"value": "http://localhost:8001"
+							},
+							{
+								"key": "Referer",
+								"value": "http://localhost:8001/docs"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "dnt",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": 10,\n  \"conversation_id\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8001/api/v1/conversations/add_user_to_conversation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"api",
+								"v1",
+								"conversations",
+								"add_user_to_conversation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Message",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "cids=1; _xsrf=2|1b4c27ed|e08e1e9c59cdda1fcacdfff9235dbbd3|1701105959; username-localhost-8888=\"2|1:0|10:1701225983|23:username-localhost-8888|44:MzA4YWJkMDEzZDcxNDk4MDhjNTg3NjEzMzQ1YTk1ZWM=|a3660a23243daeb33e0eb9f4b8f08f039394469f52a262dffc90a4c3e9ec12cb\""
+							},
+							{
+								"key": "Origin",
+								"value": "http://localhost:8001"
+							},
+							{
+								"key": "Referer",
+								"value": "http://localhost:8001/docs"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "dnt",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"context\": \"first_msg\",\n  \"conversation_id\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8001/api/v1/conversations/create_messages",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"api",
+								"v1",
+								"conversations",
+								"create_messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Conversation",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Cookie",
+								"value": "cids=1; _xsrf=2|1b4c27ed|e08e1e9c59cdda1fcacdfff9235dbbd3|1701105959; username-localhost-8888=\"2|1:0|10:1701225983|23:username-localhost-8888|44:MzA4YWJkMDEzZDcxNDk4MDhjNTg3NjEzMzQ1YTk1ZWM=|a3660a23243daeb33e0eb9f4b8f08f039394469f52a262dffc90a4c3e9ec12cb\""
+							},
+							{
+								"key": "Referer",
+								"value": "http://localhost:8001/docs"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "dnt",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8001/api/v1/conversations/get_conversation?conversation_id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"api",
+								"v1",
+								"conversations",
+								"get_conversation"
+							],
+							"query": [
+								{
+									"key": "conversation_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_All_Conversation",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Cookie",
+								"value": "cids=1; username-localhost-8888=\"2|1:0|10:1702749228|23:username-localhost-8888|44:OTI4MThlODk1ZDFjNDc3NzlmZWVjNzIxYTRlZGNhMGM=|bfff9da8cdff2b378db6697592eecb8759bb2757f22c032ddc49f48036d6436b\""
+							},
+							{
+								"key": "Referer",
+								"value": "http://localhost:8001/docs"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "dnt",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8001/api/v1/conversations/get_conversations_admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"api",
+								"v1",
+								"conversations",
+								"get_conversations_admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove User from chat (Only Admin)",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "cids=1; username-localhost-8888=\"2|1:0|10:1702749228|23:username-localhost-8888|44:OTI4MThlODk1ZDFjNDc3NzlmZWVjNzIxYTRlZGNhMGM=|bfff9da8cdff2b378db6697592eecb8759bb2757f22c032ddc49f48036d6436b\""
+							},
+							{
+								"key": "Origin",
+								"value": "http://localhost:8001"
+							},
+							{
+								"key": "Referer",
+								"value": "http://localhost:8001/docs"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "dnt",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": 10,\n  \"conversation_id\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8001/api/v1/conversations/remove_user_from_conversation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"api",
+								"v1",
+								"conversations",
+								"remove_user_from_conversation"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
