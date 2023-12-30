@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         config:
-          - { region: "us-east-1", repository: "git-action-template" }
+          - { region: "us-east-1", repository: "git-action-template" , repository-alias: "s9y4w8l4"}
 
     steps:
       - name: Checkout code
@@ -33,12 +33,13 @@ jobs:
       - name: Build, tag, and push docker image to Amazon ECR Public
         env:
           REGISTRY: ${{ steps.login-ecr-public.outputs.registry }}
+          REGISTRY_ALIAS: ${{ matrix.config.repository-alias }}
           REPOSITORY: ${{ matrix.config.repository }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          echo ${{ steps.login-ecr-public.outputs.registry }}
-          docker build -t public.ecr.aws/${{ matrix.config.repository }}:${{ github.sha }} .
-          docker push public.ecr.aws/${{ matrix.config.repository }}:${{ github.sha }}
+          echo $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG 
+          docker build -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
+          docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
 
       # - name: upload image to ECR
       #   uses: appleboy/docker-ecr-action@master
