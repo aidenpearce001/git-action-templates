@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      output: ${{ steps.docker-build.outputs.DOCKER_IMAGE }}
+      docker_image: ${{ steps.docker-build.outputs.DOCKER_IMAGE }}
 
     strategy:
       matrix:
