@@ -11,16 +11,15 @@ jobs:
     strategy:
       matrix:
         config:
-          - { region: "eu-west-1", repository: "git-action-template" }
+          - { region: "us-east-1", repository: "git-action-template" }
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          # role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-access-key-id: ${{ secrets.aws_access_key_id }}
           aws-secret-access-key: ${{ secrets.aws_secret_access_key }}
           aws-region:  ${{ matrix.config.region }}
