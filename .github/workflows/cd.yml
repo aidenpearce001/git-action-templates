@@ -21,6 +21,6 @@ jobs:
           registry: ${{ secrets.registry }}
           repo: git-action-template
           region: ap-southeast-1
-          dockerfile: example/Dockerfile
+          dockerfile: service/Dockerfile
 
 # Additional job to handle the deployment or other steps can be added
