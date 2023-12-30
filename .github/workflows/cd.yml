@@ -36,8 +36,9 @@ jobs:
           REPOSITORY: ${{ matrix.config.repository }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
-          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+          echo ${{ steps.login-ecr-public.outputs.registry }}
+          docker build -t public.ecr.aws/${{ matrix.config.repository }}:${{ github.sha }} .
+          docker push public.ecr.aws/${{ matrix.config.repository }}:${{ github.sha }}
 
       # - name: upload image to ECR
       #   uses: appleboy/docker-ecr-action@master
