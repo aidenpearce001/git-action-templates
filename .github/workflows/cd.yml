@@ -77,6 +77,7 @@ jobs:
       #     category: 'image'
 
   Deploy:
+    needs: Trivy-scan
     name: Deploy to EC2
     runs-on: ubuntu-latest
 
