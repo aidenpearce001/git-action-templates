@@ -2,41 +2,88 @@ name: CD
 
 on:
   pull_request:
-    branches:
-      - develop  # Add any other branches you want to include
+    branches: [deploy]
+  workflow_dispatch:
+
+permissions:
+  security-events: write
 
 jobs:
-  build-and-deploy:
+  docker-build:
     runs-on: ubuntu-latest
+
+    outputs:
+      docker_image: ${{ steps.docker-build.outputs.DOCKER_IMAGE }}
+
+    strategy:
+      matrix:
+        config:
+          - { region: "us-east-1", repository: "git-action-template" , repository-alias: "s9y4w8l4"}
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    # Add steps to build and deploy your application
-    # - name: Build and Deploy
-    #   run: <your build and deploy script here>
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.aws_access_key_id }}
+          aws-secret-access-key: ${{ secrets.aws_secret_access_key }}
+          aws-region:  ${{ matrix.config.region }}
 
-  dast:
-    needs: build-and-deploy
+      - name: Login to Amazon ECR Public
+        id: login-ecr-public
+        uses: aws-actions/amazon-ecr-login@v2
+        with:
+          registry-type: public
+
+      - name: Build and tag Docker
+        id: docker-build
+        env:
+          REGISTRY: ${{ steps.login-ecr-public.outputs.registry }}
+          REGISTRY_ALIAS: ${{ matrix.config.repository-alias }}
+          REPOSITORY: ${{ matrix.config.repository }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          IMAGE_NAME=$REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
+          docker build -t $IMAGE_NAME .
+          docker push $IMAGE_NAME
+          echo "DOCKER_IMAGE=$IMAGE_NAME" >> "$GITHUB_OUTPUT"
+  
+  Trivy-scan:
+    needs: docker-build
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: OWASP ZAP Scan
-      uses: zaproxy/action-baseline@v0.4.0
-      with:
-        # The target URL to perform ZAP scanning
-        target: 'https://your-deployed-application.com'
-        # The rules file location
-        rules_file_name: '.zap/rules.tsv'
-        # Other optional parameters
-        cmd_options: '-J report.json'
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ needs.docker-build.outputs.docker_image }}
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+      
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v2
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
+          category: 'image'
 
-    - name: Upload ZAP Scan Report
-      uses: actions/upload-artifact@v2
-      with:
-        name: zap-report
-        path: report.json
+  # Deploy:
+  #   runs-on: ubuntu-latest
 
-# Additional job to handle the deployment or other steps can be added
+      # - name: Build, tag, and push docker image to Amazon ECR Public
+      #   env:
+      #     REGISTRY: ${{ steps.login-ecr-public.outputs.registry }}
+      #     REGISTRY_ALIAS: ${{ matrix.config.repository-alias }}
+      #     REPOSITORY: ${{ matrix.config.repository }}
+      #     IMAGE_TAG: ${{ github.sha }}
+      #   run: |
+      #     docker build -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
+      #     docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
