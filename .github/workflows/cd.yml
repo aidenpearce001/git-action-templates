@@ -122,5 +122,15 @@ jobs:
 
       - uses: matt-ball/newman-action@master
         with:
-          collection: postman/git-action-healthcheck.postman_collection.json
+          collection: postman/git-action-healthcheck.postman_collection_success.json
           environment: postman/git-action-env.postman_environment.json
+
+  DAST:
+    needs: [API-Tesing]
+    runs-on: ubuntu-latest
+    name: ZAP Scan
+    steps:
+      - name: ZAP Scan
+        uses: zaproxy/action-baseline@v0.3.0
+        with:
+          target: 'http://${{ secrets.PUBLIC_IPV4_DNS }}:8000'
