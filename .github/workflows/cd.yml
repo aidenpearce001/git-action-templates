@@ -113,8 +113,8 @@ jobs:
 
   API-Tesing:
     needs: [Deploy]
-      name: API Testing
-      runs-on: ubuntu-latest
+    name: API Testing
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
