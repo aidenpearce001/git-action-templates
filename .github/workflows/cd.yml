@@ -63,7 +63,7 @@ jobs:
         with:
           image-ref: ${{ needs.docker-build.outputs.docker_image }}
           format: 'table'
-          output: 'trivy-results.sarif'
+          # output: 'trivy-results.sarif'
           ignore-unfixed: true
           exit-code: '1'
           vuln-type: 'os,library'
