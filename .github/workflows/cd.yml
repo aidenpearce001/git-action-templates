@@ -62,28 +62,51 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: ${{ needs.docker-build.outputs.docker_image }}
-          format: 'sarif'
-          output: 'trivy-results.sarif'
+          format: 'table'
+          # output: 'trivy-results.sarif'
           ignore-unfixed: true
+          exit-code: '1'
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
+
+      - name: echo docker_image 
+        run: echo ${{ needs.docker-build.outputs.docker_image }}
       
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v2
-        if: always()
+      # - name: Upload Trivy scan results to GitHub Security tab
+      #   uses: github/codeql-action/upload-sarif@v2
+      #   if: always()
+      #   with:
+      #     sarif_file: 'trivy-results.sarif'
+      #     category: 'image'
+
+  Deploy:
+    needs: [docker-build,Trivy-scan]
+    name: Deploy to EC2
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@master
         with:
-          sarif_file: 'trivy-results.sarif'
-          category: 'image'
+          host: ${{ secrets.PUBLIC_IPV4_DNS }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            # For authenticated pulls, you must authenticate your Docker
+            aws ecr-public get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin public.ecr.aws
 
-  # Deploy:
-  #   runs-on: ubuntu-latest
+            # Pull Docker
+            sudo docker pull ${{ needs.docker-build.outputs.docker_image }}
 
-      # - name: Build, tag, and push docker image to Amazon ECR Public
-      #   env:
-      #     REGISTRY: ${{ steps.login-ecr-public.outputs.registry }}
-      #     REGISTRY_ALIAS: ${{ matrix.config.repository-alias }}
-      #     REPOSITORY: ${{ matrix.config.repository }}
-      #     IMAGE_TAG: ${{ github.sha }}
-      #   run: |
-      #     docker build -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
-      #     docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
+            # Stop and remove the old container if it exists
+            sudo docker stop git-action-container || true
+            sudo docker rm git-action-container || true
+
+            # Run the new container
+            sudo docker run -d --name git-action-container -p 8000:8000 ${{ needs.docker-build.outputs.docker_image }}
+
+            # Optional: Clean up unused Docker images
+            sudo docker image prune -f
