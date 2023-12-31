@@ -143,3 +143,4 @@ jobs:
       - uses: matt-ball/newman-action@master
         with:
           collection: postman/git-action-healthcheck.postman_collection.json
+          environment: postman/git-action-env.postman_environment.json
