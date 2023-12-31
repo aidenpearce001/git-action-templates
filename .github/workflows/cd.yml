@@ -76,15 +76,34 @@ jobs:
       #     sarif_file: 'trivy-results.sarif'
       #     category: 'image'
 
-  # Deploy:
-  #   runs-on: ubuntu-latest
+  Deploy:
+    name: Deploy to EC2
+    runs-on: ubuntu-latest
 
-      # - name: Build, tag, and push docker image to Amazon ECR Public
-      #   env:
-      #     REGISTRY: ${{ steps.login-ecr-public.outputs.registry }}
-      #     REGISTRY_ALIAS: ${{ matrix.config.repository-alias }}
-      #     REPOSITORY: ${{ matrix.config.repository }}
-      #     IMAGE_TAG: ${{ github.sha }}
-      #   run: |
-      #     docker build -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
-      #     docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
+    steps:
+      - name: Checkout the files
+        uses: actions/checkout@v2
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@master
+        with:
+          key: ${ { secrets.EC2_SSH_KEY }}
+          host: ${ { secrets.public_ipv4_dns }}
+          username: ${ { secrets.ec2_username }}
+
+          script: |
+            # For authenticated pulls, you must authenticate your Docker
+            aws ecr-public get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin public.ecr.aws
+
+            # Pull Docker
+            sudo docker pull ${{ needs.docker-build.outputs.docker_image }}
+
+            # Stop and remove the old container if it exists
+            sudo docker stop git-action-container || true
+            sudo docker rm git-action-container || true
+
+            # Run the new container
+            sudo docker run -d --name git-action-container -p 8000:8000 ${{ needs.docker-build.outputs.docker_image }}
+
+            # Optional: Clean up unused Docker images
+            sudo docker image prune -f
