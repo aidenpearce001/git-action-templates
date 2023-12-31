@@ -120,6 +120,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Replace Value in JSON File
+      run: |
+          # Define the path to your JSON file
+          JSON_FILE='postman/git-action-env.postman_environment.json'
+
+          # Read the current value from the JSON file
+          CURRENT_VALUE=$(jq -r '.values[] | select(.key=="endpoint") | .value' "$JSON_FILE")
+
+          # Define the new value
+          NEW_VALUE="http://${{ secrets.PUBLIC_IPV4_DNS }}:8000"
+
+          # Replace the value in the JSON file
+          jq '(.values[] | select(.key=="endpoint") | .value) |= "'"$NEW_VALUE"'"' "$JSON_FILE" > temp.json && mv temp.json "$JSON_FILE"
+
+      - name: commit json file
+        run: |
+          git add .
+          git commit -m "Update JSON file"
+          git push
+
       - uses: matt-ball/newman-action@master
         with:
           collection: postman/git-action-healthcheck.postman_collection.json
