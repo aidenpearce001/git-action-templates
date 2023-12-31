@@ -85,6 +85,9 @@ jobs:
       - name: Checkout the files
         uses: actions/checkout@v2
 
+      - name: Set up env variable
+        run: echo "DOCKER_IMAGE=${{ needs.docker-build.outputs.DOCKER_IMAGE }}" >> $GITHUB_ENV
+
       - name: Deploy to EC2
         uses: appleboy/ssh-action@master
         with:
@@ -92,7 +95,7 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           env:
-            DOCKER_IMAGE: ${{ needs.docker-build.outputs.docker_image }}
+            DOCKER_IMAGE: ${{ env.DOCKER_IMAGE }}
           script: |
             # For authenticated pulls, you must authenticate your Docker
             aws ecr-public get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin public.ecr.aws
