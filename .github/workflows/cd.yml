@@ -91,11 +91,13 @@ jobs:
           host: ${{ secrets.PUBLIC_IPV4_DNS }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
+          env:
+            DOCKER_IMAGE: ${{ needs.docker-build.outputs.docker_image }}
           script: |
             # For authenticated pulls, you must authenticate your Docker
             aws ecr-public get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin public.ecr.aws
 
-            echo ${{ needs.docker-build.outputs.docker_image }}
+            echo $DOCKER_IMAGE
 
             # # Pull Docker
             # sudo docker pull ${{ needs.docker-build.outputs.docker_image }}
