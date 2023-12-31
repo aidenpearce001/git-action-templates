@@ -98,17 +98,15 @@ jobs:
             # For authenticated pulls, you must authenticate your Docker
             aws ecr-public get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin public.ecr.aws
 
-            echo ${{ needs.docker-build.outputs.docker_image }}
+            # Pull Docker
+            sudo docker pull ${{ needs.docker-build.outputs.docker_image }}
 
-            # # Pull Docker
-            # sudo docker pull ${{ needs.docker-build.outputs.docker_image }}
+            # Stop and remove the old container if it exists
+            sudo docker stop git-action-container || true
+            sudo docker rm git-action-container || true
 
-            # # Stop and remove the old container if it exists
-            # sudo docker stop git-action-container || true
-            # sudo docker rm git-action-container || true
+            # Run the new container
+            sudo docker run -d --name git-action-container -p 8000:8000 ${{ needs.docker-build.outputs.docker_image }}
 
-            # # Run the new container
-            # sudo docker run -d --name git-action-container -p 8000:8000 ${{ needs.docker-build.outputs.docker_image }}
-
-            # # Optional: Clean up unused Docker images
-            # sudo docker image prune -f
+            # Optional: Clean up unused Docker images
+            sudo docker image prune -f
