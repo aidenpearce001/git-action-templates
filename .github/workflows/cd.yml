@@ -88,10 +88,9 @@ jobs:
       - name: Deploy to EC2
         uses: appleboy/ssh-action@master
         with:
-          key: ${ { secrets.EC2_SSH_KEY }}
-          host: ${ { secrets.public_ipv4_dns }}
-          username: ${ { secrets.ec2_username }}
-
+          host: ${{ secrets.PUBLIC_IPV4_DNS }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             # For authenticated pulls, you must authenticate your Docker
             aws ecr-public get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin public.ecr.aws
