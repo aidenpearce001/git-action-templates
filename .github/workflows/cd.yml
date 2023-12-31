@@ -80,12 +80,12 @@ jobs:
       #     category: 'image'
 
   Deploy:
-    needs: Trivy-scan
+    needs: [docker-build,Trivy-scan]
     name: Deploy to EC2
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout the files
+      - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Deploy to EC2
