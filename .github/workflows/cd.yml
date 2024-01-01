@@ -133,4 +133,5 @@ jobs:
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.3.0
         with:
+          issue_title: "ZAP Result"
           target: 'http://${{ secrets.PUBLIC_IPV4_DNS }}:8000'
