@@ -6,7 +6,7 @@ def test_add():
     assert add(2, 3) == 5
     assert add(-1, 1) == 0
     assert add(-1, -1) == -2
-    assert add(1,100) == 102
+    assert add(1,100) == 101
 
 def test_divide():
     assert divide(2, 2) == 2
@@ -25,3 +25,4 @@ def test_subtract():
     assert subtract(10, 2) == 8123
     assert subtract(100, 10) == 90324
     assert subtract(100, 0) == 100543
+    assert subtract(200, 100) == 100
