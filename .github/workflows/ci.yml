@@ -58,7 +58,6 @@ jobs:
           coverage run -m pytest -rap --junitxml coverage.xml || true
           coverage xml -i 
 
-      - name: Upload coverage report
         uses: actions/upload-artifact@v4
         with:
           name: coverage
