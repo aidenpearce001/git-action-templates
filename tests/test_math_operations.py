@@ -25,3 +25,4 @@ def test_subtract():
     assert subtract(10, 2) == 8123
     assert subtract(100, 10) == 90324
     assert subtract(100, 0) == 100543
+    assert subtract(200, 100) == 100
