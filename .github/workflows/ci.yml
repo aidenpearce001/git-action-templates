@@ -38,6 +38,7 @@ jobs:
         run: ruff check .
 
   run-pytest:
+    name: Unit Test
     needs: formatting-and-linting
     runs-on: ubuntu-latest
     steps:
@@ -51,11 +52,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install pytest pytest-cov
+          pip install pytest pytest-cov coverage
 
       - name: Run pytest with coverage
         run: |
-          pytest --cov=tests --cov-report=xml
+          # pytest --cov=tests --cov-report=xml
+          coverage run -m pytest -rap --junitxml coverage.xml
+          coverage xml -i 
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
@@ -64,6 +67,22 @@ jobs:
           path: coverage.xml
 
   run-bandit:
+    name: Static application security testing
+    needs: formatting-and-linting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Install Bandit
+        run: pip install safety
+
+      - name: Run Safety 
+        run: |
+          bandit -r . -f json -o bandit-report.json --exit-zero
+
+  run-safety:
+    name: Dependency Check
     needs: formatting-and-linting
     runs-on: ubuntu-latest
     steps:
@@ -75,13 +94,7 @@ jobs:
 
       - name: Run Bandit security analysis
         run: |
-          bandit -r . -f json -o bandit-report.json --exit-zero
-
-      - name: Upload Bandit report
-        uses: actions/upload-artifact@v4
-        with:
-          name: bandit-report
-          path: bandit-report.json
+          safety check -r requirements.txt
 
   sonarqube-scan:
     needs: [run-bandit, run-pytest]
