@@ -2,7 +2,7 @@ name: CI
 
 on: 
   pull_request:
-    branches: [main]
+    branches: [staging]
   workflow_dispatch:
 
 permissions:
@@ -118,10 +118,6 @@ jobs:
 
     - name: Display structure of downloaded files
       run: ls -R .
-
-    - name: Adjust coverage paths
-      run: |
-        sed -i 's/\/home\/runner\/work\/git-action-templates\/git-action-templates\//\/github\/workspace\//g' coverage.xml
 
     - name: SonarQube Scan
       uses: sonarsource/sonarqube-scan-action@master
