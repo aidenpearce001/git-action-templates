@@ -63,7 +63,6 @@ jobs:
         with:
           image-ref: ${{ needs.docker-build.outputs.docker_image }}
           format: 'table'
-          # output: 'trivy-results.sarif'
           ignore-unfixed: true
           exit-code: '1'
           vuln-type: 'os,library'
@@ -72,12 +71,6 @@ jobs:
       - name: echo docker_image 
         run: echo ${{ needs.docker-build.outputs.docker_image }}
       
-      # - name: Upload Trivy scan results to GitHub Security tab
-      #   uses: github/codeql-action/upload-sarif@v2
-      #   if: always()
-      #   with:
-      #     sarif_file: 'trivy-results.sarif'
-      #     category: 'image'
 
   Deploy:
     needs: [docker-build,Trivy-scan]
