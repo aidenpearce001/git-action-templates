@@ -112,7 +112,6 @@ jobs:
             sudo docker image prune -f
 
   API-Tesing:
-    permissions: write-all
     needs: [Deploy]
     name: API Testing
     runs-on: ubuntu-latest
@@ -135,5 +134,6 @@ jobs:
         uses: zaproxy/action-baseline@v0.3.0
         with:
           fail_action: false
+          token: ${{ secrets.TOKEN_GITHUB }}
           issue_title: "ZAP Result"
           target: 'http://${{ secrets.PUBLIC_IPV4_DNS }}:8000'
