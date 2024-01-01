@@ -2,7 +2,7 @@ name: CI
 
 on: 
   pull_request:
-    branches: [main]
+    branches: [testing]
   workflow_dispatch:
 
 permissions:
@@ -51,11 +51,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install pytest pytest-cov
+          pip install pytest pytest-cov coverage
 
       - name: Run pytest with coverage
         run: |
-          pytest --cov=tests --cov-report=xml || true 
+          coverage run -m pytest -rap --junitxml coverage.xml || true
+          coverage xml -i 
+
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
@@ -83,6 +85,21 @@ jobs:
           name: bandit-report
           path: bandit-report.json
 
+  run-safety:
+    name: Dependency Check
+    needs: formatting-and-linting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Install Safety
+        run: pip install safety
+
+      - name: Run Safety dependency check
+        run: |
+          safety check -r requirements.txt
+
   sonarqube-scan:
     needs: [run-bandit, run-pytest]
     runs-on: ubuntu-latest
@@ -105,10 +122,6 @@ jobs:
 
     - name: Display structure of downloaded files
       run: ls -R .
-
-    - name: Adjust coverage paths
-      run: |
-        sed -i 's/\/home\/runner\/work\/git-action-templates\/git-action-templates\//\/github\/workspace\//g' coverage.xml
 
     - name: SonarQube Scan
       uses: sonarsource/sonarqube-scan-action@master
