@@ -7,7 +7,6 @@ on:
 
 permissions:
   security-events: write
-  permissions: write-all
 
 jobs:
   docker-build:
@@ -113,6 +112,7 @@ jobs:
             sudo docker image prune -f
 
   API-Tesing:
+    permissions: write-all
     needs: [Deploy]
     name: API Testing
     runs-on: ubuntu-latest
