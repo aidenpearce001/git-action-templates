@@ -84,6 +84,21 @@ jobs:
           name: bandit-report
           path: bandit-report.json
 
+  run-safety:
+    name: Dependency Check
+    needs: formatting-and-linting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Install Safety
+        run: pip install safety
+
+      - name: Run Safety dependency check
+        run: |
+          safety check -r requirements.txt
+
   sonarqube-scan:
     needs: [run-bandit, run-pytest]
     runs-on: ubuntu-latest
