@@ -2,7 +2,7 @@ name: CI
 
 on: 
   pull_request:
-    branches: [staging]
+    branches: [testing]
   workflow_dispatch:
 
 permissions:
@@ -56,7 +56,6 @@ jobs:
 
       - name: Run pytest with coverage
         run: |
-          # pytest --cov=tests --cov-report=xml
           coverage run -m pytest -rap --junitxml coverage.xml || true
           coverage xml -i 
 
