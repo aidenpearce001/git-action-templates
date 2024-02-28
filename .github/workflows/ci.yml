@@ -38,6 +38,7 @@ jobs:
         run: ruff check .
 
   run-pytest:
+    name: Unit Test
     needs: formatting-and-linting
     runs-on: ubuntu-latest
     steps:
@@ -58,7 +59,6 @@ jobs:
           coverage run -m pytest -rap --junitxml coverage.xml || true
           coverage xml -i 
 
-
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
         with:
@@ -66,6 +66,7 @@ jobs:
           path: coverage.xml
 
   run-bandit:
+    name: Static application security testing
     needs: formatting-and-linting
     runs-on: ubuntu-latest
     steps:

@@ -131,7 +131,7 @@ jobs:
     name: ZAP Scan
     steps:
       - name: ZAP Scan
-        uses: zaproxy/action-baseline@v0.8.0
+        uses: zaproxy/action-baseline@v0.10.0
         with:
           fail_action: false
           token: ${{ secrets.TOKEN_GITHUB }}
